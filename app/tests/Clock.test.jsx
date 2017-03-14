@@ -12,6 +12,16 @@ describe('<Clock />', () => {
         expect(clock.find('div')).to.have.length(1);
         expect(clock.instance()).to.be.instanceof(Clock);
     });
+    describe('render', () => {
+        it('should render 00:00 when passed no props', () => {
+            var clock = shallow(<Clock />);
+            expect(clock.find('.clock-text').text()).to.equal('00:00');
+        });
+        it('should render properly', () => {
+            var clock = shallow(<Clock totalSeconds={62} />);
+            expect(clock.find('.clock-text').text()).to.equal('01:02');
+        })
+    });
     describe('formatSeconds', () => {
         it('should format seconds', () => {
             var clock = shallow(<Clock />);
