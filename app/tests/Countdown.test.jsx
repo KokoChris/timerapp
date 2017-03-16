@@ -31,5 +31,25 @@ describe('<Countdown />', () => {
             expect(countdown.state('count')).to.equal(0);
             clock.restore();
         })
+        it('should pause countdown on stopped status', () => {
+            var countdown = shallow(<Countdown />);
+            var clock = sinon.useFakeTimers();
+            var inst = countdown.instance();
+            inst.handleSetCountdown(3);
+            inst.handleStatusChange('paused');
+            clock.tick(3000);
+            expect(countdown.state('count')).to.equal(3);
+            expect(countdown.state('countdownStatus')).to.equal('paused');
+        })
+        it('should pause countdown on stopped status', () => {
+            var countdown = shallow(<Countdown />);
+            var clock = sinon.useFakeTimers();
+            var inst = countdown.instance();
+            inst.handleSetCountdown(3);
+            inst.handleStatusChange('stopped');
+            clock.tick(3000);
+            expect(countdown.state('count')).to.equal(0);
+            expect(countdown.state('countdownStatus')).to.equal('stopped');
+        })
     })
 })
