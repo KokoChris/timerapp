@@ -14,6 +14,7 @@ class Countdown extends React.Component {
         this.handleStatusChange = this.handleStatusChange.bind(this);
     }
     componentDidUpdate(prevProps, prevState) {
+        console.log('hey')
         if (this.state.countdownStatus !== prevState.countdownStatus) {
             switch (this.state.countdownStatus) {
                 case 'started':
